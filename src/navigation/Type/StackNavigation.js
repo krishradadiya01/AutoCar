@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator>
       <Stack.Screen
         name={StackNav.Splash}
         component={StackRoute.Splash}
@@ -18,6 +18,11 @@ const StackNavigation = () => {
       <Stack.Screen
         name={StackNav.OnBoarding}
         component={StackRoute.OnBoarding}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={StackNav.LetsGetStarted}
+        component={StackRoute.LetsGetStarted}
         options={{headerShown: false}}
       />
       <Stack.Screen

@@ -1,0 +1,3 @@
+export const ON_BOARDING = 'ON_BOARDING';
+export const ACCESS_TOKEN = 'ACCESS_TOKEN';
+export const LETS_GET_STARTED = 'LETS_GET_STARTED';
