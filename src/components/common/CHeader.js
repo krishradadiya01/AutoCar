@@ -1,73 +1,61 @@
+// Library imports
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 // Local imports
 import {styles} from '../../themes';
-import CText from './Ctext';
 import {moderateScale} from '../../common/constant';
 import {BackButton} from '../../assets/svgs';
+import Ctext from './Ctext';
 
 export default function CHeader(props) {
+  const colors = useSelector(state => state.theme.theme);
   const {
     title,
+    description,
+    titleStyle,
+    customDescriptionStyle,
+    customMainStyle,
     onPressBack,
-    isHideBack,
-    rightIcon,
-    customStyle,
-    containerSty,
-    color = 'black',
   } = props;
   const navigation = useNavigation();
 
   const goBack = () => navigation.goBack();
 
   return (
-    <View
-      style={[
-        localStyles.container,
-        !!isHideBack && styles.ph10,
-        containerSty,
-      ]}>
-      {!isHideBack && (
-        <TouchableOpacity
-          onPress={onPressBack || goBack}
-          style={localStyles.backIconSty}>
-          <BackButton style={localStyles.imageStyle} />
-        </TouchableOpacity>
-      )}
-      <View style={[styles.flex, styles.mh40, customStyle]}>
-        <CText color={color} align={'center'} type={'B18'} numberOfLines={1}>
-          {title}
-        </CText>
-      </View>
-      {!!rightIcon && rightIcon}
-    </View>
+    <SafeAreaView style={customMainStyle}>
+      <TouchableOpacity style={{width: '8%'}} onPress={onPressBack || goBack}>
+        <BackButton style={localStyles.imgStyle} />
+      </TouchableOpacity>
+
+      <Ctext
+        type={'B24'}
+        color={colors.contrast}
+        style={[localStyles.titleTxt, titleStyle]}>
+        {title || null}
+      </Ctext>
+      <Ctext
+        color={colors.GrayScale3}
+        type={'R14'}
+        style={[localStyles.descriptionStyle, customDescriptionStyle]}>
+        {description || null}
+      </Ctext>
+    </SafeAreaView>
   );
 }
 
 const localStyles = StyleSheet.create({
-  container: {
-    ...styles.rowSpaceBetween,
-    ...styles.pv15,
-    height: moderateScale(60),
+  titleTxt: {
+    ...styles.mt5,
   },
-  backIconSty: {
-    borderRadius: moderateScale(20),
-    position: 'absolute',
-    zIndex: 1,
+  imgStyle: {
+    width: moderateScale(24),
+    height: moderateScale(24),
+    ...styles.mv25,
   },
-  senderContainer: {
-    ...styles.p15,
-    ...styles.flexRow,
-    maxWidth: '80%',
-    ...styles.itemsEnd,
-    ...styles.mt10,
-  },
-  imageStyle: {
-    borderWidth: moderateScale(1),
-    borderRadius: moderateScale(12),
-    ...styles.mt10,
-    ...styles.flex,
+  descriptionStyle: {
+    ...styles.mt15,
   },
 });

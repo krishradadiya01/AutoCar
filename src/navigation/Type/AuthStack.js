@@ -15,6 +15,16 @@ const AuthStack = () => {
         component={AuthRoute.Login}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name={AuthNav.LoginSuccess}
+        component={AuthRoute.LoginSuccess}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={AuthNav.Register}
+        component={AuthRoute.Register}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

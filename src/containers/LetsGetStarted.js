@@ -1,3 +1,4 @@
+// Library imports
 import {
   StyleSheet,
   Image,
@@ -6,15 +7,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+
+// Local imports
 import images from '../assets/images';
 import {moderateScale} from '../common/constant';
-import {useSelector} from 'react-redux';
 import Ctext from '../components/common/Ctext';
 import strings from '../i18n/strings';
 import CButton from '../components/common/CButton';
 import {styles} from '../themes/index';
 import {StackNav} from '../navigation/navigationKeys';
-import {useNavigation} from '@react-navigation/native';
 import {letsGetStarted} from '../utils/asyncStorage';
 
 export default function LetsGetStarted() {
@@ -79,9 +82,12 @@ export default function LetsGetStarted() {
         <View style={localStyles.outerComponentOfCtext}>
           <Ctext type={'R14'} align={'center'} color={colors.contrast}>
             {strings.DoNotHaveAccount}
-            <Ctext type={'B14'} color={colors.Primary}>
-              {strings.SignUp}
-            </Ctext>
+
+            <TouchableOpacity>
+              <Ctext type={'B14'} color={colors.Primary}>
+                {strings.SignUp}
+              </Ctext>
+            </TouchableOpacity>
           </Ctext>
         </View>
       </View>

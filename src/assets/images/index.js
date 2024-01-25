@@ -5,4 +5,5 @@ export default {
   LetsGetStarted: require('./letsGetStarted.png'),
   Google: require('./google.png'),
   Apple: require('./apple.png'),
+  Success: require('./success.jpg'),
 };

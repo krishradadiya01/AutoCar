@@ -1,12 +1,5 @@
 // Library import
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Image, FlatList} from 'react-native';
 import React, {useCallback, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 
@@ -54,18 +47,27 @@ export default function OnBoarding({navigation}) {
 
   const renderItem = ({item}) => {
     return (
-      <View style={localStyles.renderMainContainer}>
-        <View style={localStyles.containerOfImage}>
-          <Image source={item.image} style={localStyles.onBoarding1Style} />
-        </View>
+      <View>
+        <CButton
+          onPress={onPressLetsGetStarted}
+          color={colors.contrast}
+          text={strings.Skip}
+          backgroundColor={colors.backgroundColor}
+          containerStyle={localStyles.SkipButton}
+        />
+        <View style={localStyles.renderMainContainer}>
+          <View style={localStyles.containerOfImage}>
+            <Image source={item.image} style={localStyles.onBoarding1Style} />
+          </View>
 
-        <View style={localStyles.containerOfTitle}>
-          <Ctext type={'B24'} align={'center'}>
-            {item.title}
-          </Ctext>
-          <Ctext type={'R14'} align={'center'}>
-            {item.description}
-          </Ctext>
+          <View style={localStyles.containerOfTitle}>
+            <Ctext type={'B24'} align={'center'} color={colors.contrast}>
+              {item.title}
+            </Ctext>
+            <Ctext type={'R14'} align={'center'} color={colors.GrayScale3}>
+              {item.description}
+            </Ctext>
+          </View>
         </View>
       </View>
     );
@@ -75,11 +77,6 @@ export default function OnBoarding({navigation}) {
     <SafeAreaView
       style={[localStyles.main, {backgroundColor: colors.backgroundColor}]}>
       <View style={localStyles.mainContainer}>
-        <TouchableOpacity onPress={onPressLetsGetStarted}>
-          <Ctext type={'B14'} style={localStyles.skipStyle}>
-            {strings.Skip}
-          </Ctext>
-        </TouchableOpacity>
         <FlatList
           data={OnBoardingData}
           renderItem={renderItem}
@@ -120,12 +117,6 @@ const localStyles = StyleSheet.create({
   mainContainer: {
     ...styles.ph20,
   },
-  skipStyle: {
-    ...styles.flexRow,
-    position: 'absolute',
-    right: 0,
-    top: 40,
-  },
   onBoarding1Style: {
     width: moderateScale(297),
     height: moderateScale(301),
@@ -133,7 +124,7 @@ const localStyles = StyleSheet.create({
   containerOfImage: {
     alignItems: 'center',
     justifyContent: 'center',
-    ...styles.mt100,
+    ...styles.mt80,
   },
   containerOfTitle: {
     ...styles.mv50,
@@ -150,5 +141,12 @@ const localStyles = StyleSheet.create({
     width: moderateScale(297),
     ...styles.ph20,
     ...styles.mh20,
+  },
+  SkipButton: {
+    position: 'absolute',
+    top: moderateScale(10),
+    right: moderateScale(0),
+    width: moderateScale(40),
+    ...styles.mt0,
   },
 });

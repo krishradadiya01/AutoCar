@@ -11,7 +11,7 @@ import {useSelector} from 'react-redux';
 const CButton = props => {
   const colors = useSelector(state => state.theme.theme);
   let {
-    ChildLoginBtn,
+    childLoginBtn,
     text,
     onPress,
     containerStyle,
@@ -36,7 +36,7 @@ const CButton = props => {
         <CText
           style={[
             localStyles.ChildButton,
-            ChildLoginBtn,
+            childLoginBtn,
             {color: color || colors.backgroundColor},
           ]}>
           {text || 'Continue'}

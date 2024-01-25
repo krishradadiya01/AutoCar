@@ -5,9 +5,10 @@ export const StackNav = {
   AuthStack: 'AuthStack',
   StackNavigation: 'StackNavigation',
   TabBarNavigation: 'TabBarNavigation',
-  Login: 'Login',
 };
 
 export const AuthNav = {
   Login: 'Login',
+  LoginSuccess: 'LoginSuccess',
+  Register: 'Register',
 };
