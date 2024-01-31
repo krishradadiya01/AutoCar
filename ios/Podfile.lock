@@ -1119,6 +1119,8 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.21.0):
     - React-Core
+  - RNCClipboard (1.5.1):
+    - React-Core
   - RNScreens (3.29.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1209,6 +1211,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeLocalization (from `../node_modules/react-native-localization`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCClipboard (from `../node_modules/@react-native-community/clipboard`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -1334,6 +1337,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-localization"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCClipboard:
+    :path: "../node_modules/@react-native-community/clipboard"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -1407,6 +1412,7 @@ SPEC CHECKSUMS:
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
   ReactNativeLocalization: fb171138cdc80d5d0d4f20243d2fc82c2b3cc48f
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
+  RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   RNVectorIcons: 210f910e834e3485af40693ad4615c1ec22fc02b

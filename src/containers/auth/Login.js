@@ -21,37 +21,80 @@ import {styles} from '../../themes/index';
 import Ctext from '../../components/common/Ctext';
 import CButton from '../../components/common/CButton';
 import images from '../../assets/images';
-import {StackNav} from '../../navigation/navigationKeys';
+import {AuthNav} from '../../navigation/navigationKeys';
 import {validateEmail, validatePassword} from '../../utils/validators';
+import KeyBoardAvoidWrapper from '../../components/common/KeyBoardAvoidWrapper';
 
 export default function Login({navigation}) {
   const colors = useSelector(state => state.theme.theme);
 
+  const BlurredStyle = {
+    borderColor: colors.BorderColor,
+  };
+  const FocusedStyle = {
+    borderColor: colors.Primary,
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [showMessage, setShowMessage] = useState(false);
-  const [changeValue, setChangeValue] = useState('');
+  const [showMessageEmail, setShowMessageEmail] = useState(false);
+  const [showMessagePassword, setShowMessagePassword] = useState(false);
+
+  const [emailInputStyle, setEmailInputStyle] = useState(BlurredStyle);
+  const [passwordInputStyle, setPasswordInputStyle] = useState(BlurredStyle);
+
+  const onFocusInput = onHighlight => onHighlight(FocusedStyle);
+  const onBlurInput = onUnHighlight => onUnHighlight(BlurredStyle);
+
+  const onFocusEmail = () => {
+    onFocusInput(setEmailInputStyle);
+  };
+
+  const onBlurEmail = () => {
+    onBlurInput(setEmailInputStyle);
+  };
+
+  const onFocusPassword = () => {
+    onFocusInput(setPasswordInputStyle);
+  };
+
+  const onBlurPassword = () => {
+    onBlurInput(setPasswordInputStyle);
+  };
 
   const onPressChangeEmail = txt => {
     const {msg} = validateEmail(txt);
     setEmail(txt);
-    setShowMessage(msg);
+    setShowMessageEmail(msg);
   };
 
   const onPressChangPass = txt => {
     const {msg} = validatePassword(txt);
     setPassword(txt);
-    setChangeValue(msg);
+    setShowMessagePassword(msg);
+  };
+
+  const onPressSignUp = () => {
+    navigation.navigate(AuthNav.Register);
+  };
+
+  const onPressForgotPass = () => {
+    navigation.navigate(AuthNav.ForgotPassword);
   };
 
   const onPressLogin = async () => {
-    if (email === '' || showMessage || changeValue || password === '') {
+    if (
+      email === '' ||
+      showMessageEmail ||
+      showMessagePassword ||
+      password === ''
+    ) {
       Alert.alert(strings.PleaseFill);
     } else {
       navigation.reset({
         index: 0,
-        routes: [{name: StackNav.LoginSuccess}],
+        routes: [{name: AuthNav.LoginSuccess}],
       });
     }
   };
@@ -82,91 +125,104 @@ export default function Login({navigation}) {
   return (
     <SafeAreaView style={{backgroundColor: colors.backgroundColor, flex: 1}}>
       <View style={localStyles.outerMainComponent}>
-        <View>
-          <CHeader
-            title={strings.WelcomeBack}
-            description={strings.LoginText}
-          />
-          <CTextInput
-            value={email}
-            onChangeText={onPressChangeEmail}
-            color={colors.GrayScale3}
-            text={strings.Email}
-            LeftIcon={() => (
-              <Material
-                name={'email-outline'}
-                size={moderateScale(22)}
-                color={colors.GrayScale3}
-                style={styles.ml15}
-              />
-            )}
-          />
-
-          {showMessage ? <Ctext color={colors.Red}>{showMessage}</Ctext> : null}
-
-          <CTextInput
-            value={password}
-            onChangeText={onPressChangPass}
-            color={colors.GrayScale3}
-            LeftIcon={() => (
-              <Feather
-                name={'key'}
-                size={moderateScale(22)}
-                color={colors.GrayScale3}
-                style={styles.ml15}
-              />
-            )}
-            text={strings.Password}
-            isSecure={true}
-          />
-
-          {changeValue ? <Ctext color={colors.Red}>{changeValue}</Ctext> : null}
-
-          <Ctext
-            align={'right'}
-            type={'R14'}
-            color={colors.Primary}
-            style={localStyles.ForgotPassTxtStyle}>
-            {strings.ForgotPassword}
-          </Ctext>
-
-          <CButton
-            onPress={onPressLogin}
-            text={strings.LogIn}
-            containerStyle={localStyles.LoginBtnStyle}
-          />
-
-          <View style={localStyles.mainOr}>
-            <View
-              style={[
-                localStyles.firstLine,
-                {backgroundColor: colors.BorderColor},
-              ]}
+        <KeyBoardAvoidWrapper>
+          <View>
+            <CHeader
+              title={strings.WelcomeBack}
+              description={strings.LoginText}
             />
+            <CTextInput
+              mainTxtInp={[emailInputStyle]}
+              onFocus={onFocusEmail}
+              onBlur={onBlurEmail}
+              value={email}
+              onChangeText={onPressChangeEmail}
+              color={colors.GrayScale3}
+              text={strings.Email}
+              LeftIcon={() => (
+                <Material
+                  name={'email-outline'}
+                  size={moderateScale(22)}
+                  color={colors.GrayScale3}
+                  style={styles.ml15}
+                />
+              )}
+            />
+
+            {showMessageEmail ? (
+              <Ctext color={colors.Red}>{showMessageEmail}</Ctext>
+            ) : null}
+
+            <CTextInput
+              mainTxtInp={passwordInputStyle}
+              onFocus={onFocusPassword}
+              onBlur={onBlurPassword}
+              value={password}
+              onChangeText={onPressChangPass}
+              color={colors.GrayScale3}
+              LeftIcon={() => (
+                <Feather
+                  name={'key'}
+                  size={moderateScale(22)}
+                  color={colors.GrayScale3}
+                  style={styles.ml15}
+                />
+              )}
+              text={strings.Password}
+              isSecure={true}
+            />
+
+            {showMessagePassword ? (
+              <Ctext color={colors.Red}>{showMessagePassword}</Ctext>
+            ) : null}
+
             <Ctext
-              color={colors.contrast}
-              type={'B14'}
-              style={localStyles.orTxt}>
-              {strings.Or}
+              onPress={onPressForgotPass}
+              align={'right'}
+              type={'R14'}
+              color={colors.Primary}
+              style={localStyles.ForgotPassTxtStyle}>
+              {strings.ForgotPassword}
             </Ctext>
-            <View
-              style={[
-                localStyles.firstLine,
-                {backgroundColor: colors.BorderColor},
-              ]}
+
+            <CButton
+              onPress={onPressLogin}
+              text={strings.LogIn}
+              containerStyle={localStyles.LoginBtnStyle}
+            />
+
+            <View style={localStyles.mainOr}>
+              <View
+                style={[
+                  localStyles.firstLine,
+                  {backgroundColor: colors.BorderColor},
+                ]}
+              />
+              <Ctext
+                color={colors.contrast}
+                type={'B14'}
+                style={localStyles.orTxt}>
+                {strings.Or}
+              </Ctext>
+              <View
+                style={[
+                  localStyles.firstLine,
+                  {backgroundColor: colors.BorderColor},
+                ]}
+              />
+            </View>
+
+            <CommonComponent
+              text={strings.ContinueWithGoogle}
+              icon={images.Google}
+            />
+
+            <CommonComponent
+              text={strings.ContinueWithApple}
+              icon={images.Apple}
             />
           </View>
-
-          <CommonComponent
-            text={strings.ContinueWithGoogle}
-            icon={images.Google}
-          />
-
-          <CommonComponent
-            text={strings.ContinueWithApple}
-            icon={images.Apple}
-          />
-        </View>
+        </KeyBoardAvoidWrapper>
 
         <Ctext
           type={'B14'}
@@ -174,9 +230,12 @@ export default function Login({navigation}) {
           align={'center'}
           style={localStyles.DoNotHaveAccount}>
           {strings.DoNotHaveAccount}
-          <Ctext type={'B14'} color={colors.Primary}>
-            {strings.SignUp}
-          </Ctext>
+
+          <TouchableOpacity onPress={onPressSignUp}>
+            <Ctext type={'B14'} color={colors.Primary}>
+              {strings.SignUp}
+            </Ctext>
+          </TouchableOpacity>
         </Ctext>
       </View>
     </SafeAreaView>
@@ -213,7 +272,6 @@ const localStyles = StyleSheet.create({
     height: moderateScale(56),
     borderWidth: moderateScale(1),
     borderRadius: moderateScale(12),
-    ...styles.center,
     ...styles.mt20,
     ...styles.rowCenter,
     gap: moderateScale(10),

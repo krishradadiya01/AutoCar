@@ -7,9 +7,8 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // Local imports
 import {moderateScale} from '../../common/constant';
@@ -18,18 +17,15 @@ import images from '../../assets/images';
 import Ctext from '../../components/common/Ctext';
 import strings from '../../i18n/strings';
 import CButton from '../../components/common/CButton';
-import {StackNav} from '../../navigation/navigationKeys';
-import {authToken} from '../../utils/asyncStorage';
+import {AuthNav} from '../../navigation/navigationKeys';
 
-export default function LoginSuccess() {
+export default function SignUpSuccess({navigation}) {
   const colors = useSelector(state => state.theme.theme);
-  const navigation = useNavigation();
 
-  const onPressHome = async () => {
-    await authToken(true);
+  const onPressBackToLogin = () => {
     navigation.reset({
       index: 0,
-      routes: [{name: StackNav.TabBarNavigation}],
+      routes: [{name: AuthNav.Login}],
     });
   };
 
@@ -37,7 +33,7 @@ export default function LoginSuccess() {
     <SafeAreaView style={{backgroundColor: colors.backgroundColor, flex: 1}}>
       <View style={localStyles.main}>
         <View>
-          <TouchableOpacity onPress={onPressHome}>
+          <TouchableOpacity>
             <AntDesign
               style={styles.mv10}
               name={'close'}
@@ -47,20 +43,25 @@ export default function LoginSuccess() {
           </TouchableOpacity>
         </View>
 
-        <View style={localStyles.imageAndTextMainContainer}>
-          <Image source={images.Success} style={localStyles.imageStyle} />
+        <View style={localStyles.mainImageStyle}>
+          <Image source={images.SignUpSuccess} style={localStyles.imageStyle} />
+          <Ctext
+            type={'B24'}
+            color={colors.contrast}
+            style={localStyles.titleStyle}>
+            {strings.SuccessRegister}
+          </Ctext>
 
-          <View style={{gap: moderateScale(13)}}>
-            <Ctext type={'B24'} align={'center'} color={colors.contrast}>
-              {strings.WelcomeBack}
-            </Ctext>
-            <Ctext type={'center'} color={colors.DescColor}>
-              {strings.WelcomeBackDescription}
-            </Ctext>
-          </View>
+          <Ctext align={'center'} type={'R14'} color={colors.DescColor}>
+            {strings.SuccessRegisterDescription}
+          </Ctext>
         </View>
 
-        <CButton onPress={onPressHome} text={strings.GoToHome} />
+        <CButton
+          text={strings.BackToLogin}
+          containerStyle={localStyles.ButtonStyle}
+          onPress={onPressBackToLogin}
+        />
       </View>
     </SafeAreaView>
   );
@@ -68,7 +69,7 @@ export default function LoginSuccess() {
 
 const localStyles = StyleSheet.create({
   main: {
-    ...styles.m20,
+    ...styles.mh20,
     ...styles.flex,
     ...styles.justifyBetween,
   },
@@ -76,8 +77,14 @@ const localStyles = StyleSheet.create({
     width: moderateScale(136),
     height: moderateScale(136),
   },
-  imageAndTextMainContainer: {
+  mainImageStyle: {
     ...styles.alignCenter,
-    gap: moderateScale(30),
+    gap: moderateScale(13),
+  },
+  titleStyle: {
+    ...styles.mt30,
+  },
+  ButtonStyle: {
+    ...styles.mv25,
   },
 });

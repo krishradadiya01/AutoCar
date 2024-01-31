@@ -37,7 +37,6 @@ export default function CTextInput({
         localStyles.main,
         mainTxtInp,
         {backgroundColor: colors.backgroundColor},
-        {borderColor: colors.BorderColor},
       ]}>
       {!!LeftIcon && <LeftIcon />}
       <TextInput

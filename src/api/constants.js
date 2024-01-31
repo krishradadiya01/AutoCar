@@ -13,3 +13,16 @@ export const OnBoardingData = [
     description: strings.SellYourCarDescription,
   },
 ];
+
+export const ForgotPasswordData = [
+  {
+    id: 1,
+    title: strings.Email,
+    description: strings.EnterEmail,
+  },
+  {
+    id: 2,
+    title: strings.Phone,
+    description: strings.EnterPhone,
+  },
+];

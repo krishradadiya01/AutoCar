@@ -17,7 +17,7 @@ import Ctext from '../components/common/Ctext';
 import strings from '../i18n/strings';
 import CButton from '../components/common/CButton';
 import {styles} from '../themes/index';
-import {StackNav} from '../navigation/navigationKeys';
+import {AuthNav, StackNav} from '../navigation/navigationKeys';
 import {letsGetStarted} from '../utils/asyncStorage';
 
 export default function LetsGetStarted() {
@@ -27,6 +27,12 @@ export default function LetsGetStarted() {
   const onPressLogin = async () => {
     await letsGetStarted(true);
     navigation.navigate(StackNav.AuthStack);
+  };
+
+  const onPressRegister = () => {
+    navigation.navigate(AuthNav.AuthStack, {
+      screen: AuthNav.Register,
+    });
   };
 
   const CommonComponent = ({text, icon}) => {
@@ -49,8 +55,7 @@ export default function LetsGetStarted() {
   };
 
   return (
-    <SafeAreaView
-      style={[localStyles.main, {backgroundColor: colors.backgroundColor}]}>
+    <SafeAreaView style={{backgroundColor: colors.backgroundColor, flex: 1}}>
       <Image source={images.LetsGetStarted} style={localStyles.imageStyle} />
 
       <View style={localStyles.outerContainer}>
@@ -83,7 +88,7 @@ export default function LetsGetStarted() {
           <Ctext type={'R14'} align={'center'} color={colors.contrast}>
             {strings.DoNotHaveAccount}
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onPressRegister}>
               <Ctext type={'B14'} color={colors.Primary}>
                 {strings.SignUp}
               </Ctext>
@@ -96,9 +101,6 @@ export default function LetsGetStarted() {
 }
 
 const localStyles = StyleSheet.create({
-  main: {
-    flex: 1,
-  },
   outerContainer: {
     ...styles.mh20,
   },

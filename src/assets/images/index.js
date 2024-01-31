@@ -6,4 +6,7 @@ export default {
   Google: require('./google.png'),
   Apple: require('./apple.png'),
   Success: require('./success.jpg'),
+  SignUpSuccess: require('./signUpSuccess.png'),
+  ResetLink: require('./resetLink.png'),
+  ResetSuccess: require('./resetSuccess.png'),
 };
