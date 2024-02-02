@@ -9,4 +9,12 @@ export default {
   SignUpSuccess: require('./signUpSuccess.png'),
   ResetLink: require('./resetLink.png'),
   ResetSuccess: require('./resetSuccess.png'),
+  Car1: require('./car1.jpg'),
+  NewCar: require('./newCar.png'),
+  UsedCar: require('./usedCar.png'),
+  Brand: require('./brand.png'),
+  Other: require('./other.png'),
+  WhiteCar: require('./whiteCar.png'),
+  SilverCar: require('./silverCar.png'),
+  BlackCar: require('./blackCar.png'),
 };

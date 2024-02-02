@@ -9,6 +9,9 @@ import DarkMessage from './darkMessage.svg';
 import LightProfile from './lightProfile.svg';
 import DarkProfile from './darkProfile.svg';
 import AddButton from './addButton.svg';
+import Notification from './notification.svg';
+import Like from './like.svg';
+import Unlike from './unLike.svg';
 
 export {
   BackButton,
@@ -22,4 +25,7 @@ export {
   LightProfile,
   DarkProfile,
   AddButton,
+  Notification,
+  Like,
+  Unlike,
 };

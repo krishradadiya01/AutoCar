@@ -26,3 +26,65 @@ export const ForgotPasswordData = [
     description: strings.EnterPhone,
   },
 ];
+
+export const CategoriesData = [
+  {
+    id: 1,
+    image: images.NewCar,
+    title: strings.New,
+  },
+  {
+    id: 2,
+    image: images.UsedCar,
+    title: strings.Used,
+  },
+  {
+    id: 3,
+    image: images.Brand,
+    title: strings.Brand,
+  },
+  {
+    id: 4,
+    image: images.Other,
+    title: strings.Other,
+  },
+];
+
+export const RecommendationData = [
+  {
+    id: 1,
+    image: images.WhiteCar,
+    isLiked: false,
+    label: strings.New,
+    car: strings.Tesla,
+    model: strings.ModelS,
+    price: strings.TeslaDollars,
+  },
+  {
+    id: 2,
+    image: images.SilverCar,
+    isLiked: false,
+    label: strings.Used,
+    car: strings.Tesla,
+    model: strings.Model3,
+    price: strings.TeslaDollars,
+  },
+  {
+    id: 3,
+    image: images.WhiteCar,
+    isLiked: false,
+    label: strings.New,
+    car: strings.Tesla,
+    model: strings.ModelS,
+    price: strings.TeslaDollars,
+  },
+  {
+    id: 4,
+    image: images.BlackCar,
+    isLiked: false,
+    label: strings.New,
+    car: strings.Tesla,
+    model: strings.ModelS,
+    price: strings.TeslaDollars,
+  },
+];

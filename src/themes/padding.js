@@ -140,6 +140,9 @@ export default StyleSheet.create({
   pv40: {
     paddingVertical: getHeight(40),
   },
+  pv3point5: {
+    paddingVertical: getHeight(3.5),
+  },
   pv5: {
     paddingVertical: getHeight(5),
   },

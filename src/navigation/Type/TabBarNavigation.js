@@ -61,7 +61,7 @@ export default function TabBarNavigation() {
         component={TabRoute.MessageTab}
         options={{
           headerShown: false,
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Message',
           tabBarActiveTintColor: colors.Primary,
           tabBarInactiveTintColor: colors.GrayScale3,
           tabBarIcon: ({focused}) =>
@@ -73,7 +73,7 @@ export default function TabBarNavigation() {
         component={TabRoute.ProfileTab}
         options={{
           headerShown: false,
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Profile',
           tabBarActiveTintColor: colors.Primary,
           tabBarInactiveTintColor: colors.GrayScale3,
           tabBarIcon: ({focused}) =>

@@ -5,6 +5,7 @@ const LightColor = {
   GrayScale2: '#E2E8F3',
   BorderColor: '#E2E8F0',
   GrayScale4: '#F1F5F9',
+  PrimaryLight: '#EFF4FF',
 };
 
 const DarkColor = {
@@ -14,6 +15,7 @@ const DarkColor = {
   GrayScale2: '#334155',
   BorderColor: '#334155',
   GrayScale4: '#1E293B',
+  PrimaryLight: '#1E293B',
 };
 
 const commonColor = {
